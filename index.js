@@ -1,6 +1,6 @@
 let express = require("express");
 let cors = require("cors");
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 let app = express();
 let port = process.env.port || 3000;
 
@@ -37,6 +37,13 @@ async function run() {
       const newCrop = req.body;
       console.log("crop info", newCrop);
       const result = await cropsColl.insertOne(newCrop);
+      res.send(result);
+    });
+
+    app.delete("/crops/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await cropsColl.deleteOne(query);
       res.send(result);
     });
     await client.db("admin").command({ ping: 1 });
