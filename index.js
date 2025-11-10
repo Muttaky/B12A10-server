@@ -26,6 +26,13 @@ async function run() {
     await client.connect();
     const cropsDB = client.db("cropsDB");
     const cropsColl = cropsDB.collection("crops");
+
+    app.get("/crops", async (req, res) => {
+      const cursor = cropsColl.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+
     app.post("/crops", async (req, res) => {
       const newCrop = req.body;
       console.log("crop info", newCrop);
