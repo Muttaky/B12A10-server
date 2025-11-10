@@ -47,6 +47,27 @@ async function run() {
       res.send(result);
     });
 
+    app.patch("/crops/:id", async (req, res) => {
+      const id = req.params.id;
+      const updatedCrop = req.body;
+      const query = { _id: new ObjectId(id) };
+      const update = {
+        $set: {
+          name: updatedCrop.name,
+          type: updatedCrop.type,
+          price: updatedCrop.name,
+          unit: updatedCrop.unit,
+          quantity: updatedCrop.quantity,
+          description: updatedCrop.description,
+          location: updatedCrop.location,
+          image: updatedCrop.image,
+        },
+      };
+      const options = {};
+      const result = await cropsColl.updateOne(query, update, options);
+      res.send(result);
+    });
+
     app.delete("/crops/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
