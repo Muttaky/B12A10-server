@@ -33,6 +33,13 @@ async function run() {
       res.send(result);
     });
 
+    app.get("/crops/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await cropsColl.findOne(query);
+      res.send(result);
+    });
+
     app.post("/crops", async (req, res) => {
       const newCrop = req.body;
       console.log("crop info", newCrop);
