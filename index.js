@@ -55,7 +55,7 @@ async function run() {
         $set: {
           name: updatedCrop.name,
           type: updatedCrop.type,
-          price: updatedCrop.name,
+          price: updatedCrop.price,
           unit: updatedCrop.unit,
           quantity: updatedCrop.quantity,
           description: updatedCrop.description,
