@@ -2,9 +2,15 @@ let express = require("express");
 let cors = require("cors");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 let app = express();
-let port = process.env.port || 3000;
+const allowedOrigins = ["http://localhost:5173/"];
 
-app.use(cors());
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 const uri =
