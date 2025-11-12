@@ -35,9 +35,15 @@ async function run() {
     await client.connect();
     const cropsDB = client.db("cropsDB");
     const cropsColl = cropsDB.collection("crops");
+    const interColl = cropsDB.collection("inter");
 
     app.get("/crops", async (req, res) => {
       const cursor = cropsColl.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+    app.get("/inter", async (req, res) => {
+      const cursor = interColl.find();
       const result = await cursor.toArray();
       res.send(result);
     });
@@ -53,6 +59,12 @@ async function run() {
       const newCrop = req.body;
       console.log("crop info", newCrop);
       const result = await cropsColl.insertOne(newCrop);
+      res.send(result);
+    });
+    app.post("/inter", async (req, res) => {
+      const newIterest = req.body;
+      console.log("crop info", newCrop);
+      const result = await interColl.insertOne(newInterest);
       res.send(result);
     });
 
