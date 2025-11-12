@@ -57,13 +57,11 @@ async function run() {
 
     app.post("/crops", async (req, res) => {
       const newCrop = req.body;
-      console.log("crop info", newCrop);
       const result = await cropsColl.insertOne(newCrop);
       res.send(result);
     });
     app.post("/inter", async (req, res) => {
-      const newIterest = req.body;
-      console.log("crop info", newCrop);
+      const newInterest = req.body;
       const result = await interColl.insertOne(newInterest);
       res.send(result);
     });
