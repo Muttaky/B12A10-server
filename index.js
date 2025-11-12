@@ -87,6 +87,20 @@ async function run() {
       res.send(result);
     });
 
+    app.patch("/inter/:id", async (req, res) => {
+      const id = req.params.id;
+      const updatedInter = req.body;
+      const query = { _id: new ObjectId(id) };
+      const update = {
+        $set: {
+          status: updatedInter.status,
+        },
+      };
+      const options = {};
+      const result = await interColl.updateOne(query, update, options);
+      res.send(result);
+    });
+
     app.delete("/crops/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
