@@ -7,7 +7,7 @@ const allowedOrigins = ["http://localhost:5173/"];
 app.use(
   cors({
     origin: allowedOrigins,
-    methods: ["GET", "POST", "PATCH", "DELETE"],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     credentials: true,
   })
 );
