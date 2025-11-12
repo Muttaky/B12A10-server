@@ -2,7 +2,7 @@ let express = require("express");
 let cors = require("cors");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 let app = express();
-const allowedOrigins = ["http://localhost:5173/"];
+const allowedOrigins = ["http://localhost:5173"];
 
 app.use(
   cors({
