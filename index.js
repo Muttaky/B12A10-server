@@ -84,9 +84,6 @@ async function run() {
 }
 run().catch(console.dir);
 
-app.listen(port, () => {
-  console.log(`app listening on port ${port}`);
-});
-
+module.exports = app;
 //fLxrJrZSBBLe6rlD
 //newDbUser
